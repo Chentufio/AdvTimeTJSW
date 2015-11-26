@@ -83,6 +83,7 @@ function preload() {
   frameTime = millis();
   delay = random(0, 1000);
 }
+
 function setup() {
 
   createCanvas(windowWidth, windowHeight);
@@ -107,6 +108,7 @@ function setup() {
   owl1.playMode('restart');
   bgS.play();
 }
+
 function draw() {
 
   if (isTouch()) {
@@ -135,8 +137,6 @@ function draw() {
       finnSprite();
       iceKingSprite();
       buttons();
-      finn.debug = mouseIsPressed;
-      iceking.debug = mouseIsPressed;
       drawSprites();
       break;
     case 3:
@@ -172,6 +172,7 @@ function titleSprites() {
   mSprt.addImage(letraM);
 
 }
+
 function moveSword() {
   var xls = swordSprt.position.x;
   if (xls < windowWidth / 2) {
@@ -197,13 +198,16 @@ function moveSword() {
   }
 
 }
+
 function enlargeTitle() {
   completeSprt.attractionPoint(0.1, windowWidth / 2 - 10, windowHeight / 3 + 18);
 }
+
 function enlargeOver() {
   gameOver.attractionPoint(0.1, windowWidth / 2 - 10, windowHeight / 3 + 50);
 
 }
+
 function buttonStart() {
   //fill(random(0,255),random(0,255),random(0,255));
   fill(0);
@@ -282,6 +286,7 @@ function buttonStart() {
     }
   }
 }
+
 function cosmicOwlSprite() {
 
   if (cosmicOwl.getAnimationLabel() !== "moving") {
@@ -363,6 +368,7 @@ function initPlayers() {
   btnRight.mirrorX(-1);
 
 }
+
 function environment() {
 
   /*for (var x = 0; x < windowWidth; x += 612 ) {
@@ -446,14 +452,8 @@ function environment() {
   //door.addAnimation("opening", "assets/things/door_closed.png", "assets/things/door_middle.png", "assets/things/door_open.png");
 
 }
-function finnSprite() {
 
-  plataform1.debug = mouseIsPressed;
-  plataform2.debug = mouseIsPressed;
-  plataform3.debug = mouseIsPressed;
-  plataform4.debug = mouseIsPressed;
-  plataform5.debug = mouseIsPressed;
-  plataform6.debug = mouseIsPressed;
+function finnSprite() {
 
   finn.velocity.y += GRAVITY;
 
@@ -466,18 +466,30 @@ function finnSprite() {
   } else if (finn.collide(flor3)) {
     finn.velocity.y = 0;
     finn.changeAnimation("idle");
+  } else if (finn.collide(plataform1)) {
+    finn.velocity.y = 0;
+    finn.changeAnimation("idle");
+  } else if (finn.collide(plataform2)) {
+    finn.velocity.y = 0;
+    finn.changeAnimation("idle");
+  } else if (finn.collide(plataform3)) {
+    finn.velocity.y = 0;
+    finn.changeAnimation("idle");
+  } else if (finn.collide(plataform4)) {
+    finn.velocity.y = 0;
+    finn.changeAnimation("idle");
+  } else if (finn.collide(plataform5)) {
+    finn.velocity.y = 0;
+    finn.changeAnimation("idle");
+  } else if (finn.collide(plataform6)) {
+    finn.velocity.y = 0;
+    finn.changeAnimation("idle");
   }
+
+
 
   finn.collide(jewels, score);
   finn.collide(snow, life);
-
-
-  finn.collide(plataform1);
-  finn.collide(plataform2);
-  finn.collide(plataform3);
-  finn.collide(plataform4);
-  finn.collide(plataform5);
-  finn.collide(plataform6);
 
   if (finn.collide(iceking)) {
     life2();
@@ -523,6 +535,7 @@ function finnSprite() {
     }
   }
 }
+
 function iceKingSprite() {
   //iceking.attractionPoint(.2, kingX, kingY);
   var lol = 0;
@@ -557,6 +570,7 @@ function iceKingSprite() {
     iceKingAttack();
   }
 }
+
 function iceKingAttack() {
 
   var level;
@@ -604,6 +618,7 @@ function jewellSpawn() {
   }
 
 }
+
 function score(collector, collected) {
 
   finnScore += 1;
@@ -630,6 +645,7 @@ function score(collector, collected) {
 
   collected.remove();
 }
+
 function life(collector, collected) {
 
   golpe += 5;
@@ -654,6 +670,7 @@ function life(collector, collected) {
   }
 
 }
+
 function life2() {
 
   golpe += 10;
@@ -734,10 +751,12 @@ function buttons() {
 
 
 }
+
 function windowResized() {
   bg.resize(windowWidth, windowHeight);
   resizeCanvas(windowWidth, windowHeight);
 }
+
 function mousePressed() {
   if (pantallas == 3) {
     if (frameTime + 3000 < millis()) {
@@ -764,9 +783,11 @@ function mousePressed() {
   }
 
 }
+
 function mouseMoved() {
   mouse_moved = true;
 }
+
 function touchStarted() {
   touch_started = true;
   if (pantallas == 3) {
@@ -793,6 +814,7 @@ function touchStarted() {
     }
   }
 }
+
 function touchEnded() {
 
   if (pantallas == 2) {
@@ -803,12 +825,15 @@ function touchEnded() {
     frameTime = millis();
   }
 }
+
 function isTouch() {
   return touch_started && !mouse_moved;
 }
+
 function keyTyped() {
 
 }
+
 function keyReleased() {
   frameTime = millis();
   finn.setVelocity(0, 0);
